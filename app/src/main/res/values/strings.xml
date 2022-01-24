@@ -3,4 +3,8 @@
     <string name="title_activity_join">JoinActivity</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="sign_in">Sign in</string>
+    <string name="username">Username</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
 </resources>
