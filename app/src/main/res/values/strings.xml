@@ -1,10 +1,11 @@
 <resources>
     <string name="app_name">Cat Chat</string>
     <string name="title_activity_join">JoinActivity</string>
-    <string name="dummy_button">Dummy Button</string>
-    <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="sign_in">Sign in</string>
-    <string name="username">Username</string>
-    <string name="username">Username</string>
+    <string name="register">Register</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="password">Password</string>
+    <string name="username">Username</string>
+    <string name="login">Login</string>
+    <string name="forgot_password">Forgot Password</string>
 </resources>
