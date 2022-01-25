@@ -8,4 +8,7 @@
     <string name="username">Username</string>
     <string name="login">Login</string>
     <string name="forgot_password">Forgot Password</string>
+    <string name="email">Email</string>
+    <string name="add_image">Add Image</string>
+    <string name="enter_password_again">Enter password again</string>
 </resources>

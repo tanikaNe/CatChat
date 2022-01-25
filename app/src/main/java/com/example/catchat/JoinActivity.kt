@@ -1,12 +1,18 @@
 package com.example.catchat
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayoutMediator
+import com.google.android.material.tabs.TabLayoutMediator.TabConfigurationStrategy
+
+import androidx.annotation.NonNull
+
+
+
 
 private const val  NUM_PAGES = 2
 class JoinActivity : FragmentActivity() {
@@ -17,11 +23,18 @@ class JoinActivity : FragmentActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_join)
 
-        viewPager = findViewById(R.id.joinViewPager)
+        val viewPager: ViewPager2 = findViewById(R.id.joinViewPager)
+        val tabLayout: TabLayout = findViewById(R.id.tabLayout)
 
         val pagerAdapter = ScreenSlidePagerAdapter(this)
         viewPager.adapter = pagerAdapter
+
+        TabLayoutMediator(tabLayout, viewPager) { tab, position ->
+            val tabNames = listOf("Login", "Register")
+            tab.text = tabNames[position]
+        }.attach()
     }
+
 
     override fun onBackPressed() {
         if(viewPager.currentItem ==0) {
@@ -33,8 +46,15 @@ class JoinActivity : FragmentActivity() {
         }
     }
 
-    private inner class ScreenSlidePagerAdapter(fa: FragmentActivity) : FragmentStateAdapter(fa) {
+    private inner class ScreenSlidePagerAdapter(fragment: JoinActivity) : FragmentStateAdapter(fragment) {
         override fun getItemCount(): Int = NUM_PAGES
-        override fun createFragment(position: Int): Fragment = LoginFragment()
+
+        override fun createFragment(position: Int): Fragment {
+            return when (position){
+                0 -> LoginFragment()
+                1 -> RegisterFragment()
+                else -> RegisterFragment()
+            }
+        }
     }
 }
