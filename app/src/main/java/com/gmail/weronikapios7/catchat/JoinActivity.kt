@@ -1,6 +1,9 @@
 package com.gmail.weronikapios7.catchat
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
@@ -16,7 +19,10 @@ class JoinActivity : FragmentActivity() {
     private lateinit var viewPager: ViewPager2
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
+
         super.onCreate(savedInstanceState)
+
         setContentView(R.layout.activity_join)
 
         val viewPager: ViewPager2 = findViewById(R.id.joinViewPager)
@@ -53,4 +59,6 @@ class JoinActivity : FragmentActivity() {
             }
         }
     }
+
+
 }
