@@ -12,7 +12,7 @@
         android:layout_height="wrap_content" >
 
         <EditText
-            android:id="@+id/etUsername"
+            android:id="@+id/etAddEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
@@ -28,10 +28,10 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
+            app:layout_constraintTop_toBottomOf="@+id/etAddUsername" />
 
         <EditText
-            android:id="@+id/etPassword"
+            android:id="@+id/etAddPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
@@ -47,29 +47,12 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/etUsername"
+            app:layout_constraintTop_toBottomOf="@+id/etAddEmail"
             tools:ignore="DuplicateSpeakableTextCheck" />
 
-        <EditText
-            android:id="@+id/etPassword2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="24dp"
-            android:background="@drawable/etxt_bg"
-            android:ems="10"
-            android:hint="@string/enter_password_again"
-            android:textColorHint="#757575"
-            android:inputType="textPassword"
-            android:minHeight="48dp"
-            android:padding="10dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/etPassword" />
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/addImage"
+            android:id="@+id/ivAddImage"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_gravity="center"
@@ -79,17 +62,18 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/white"
+            <ImageView
+                android:layout_width="109dp"
+                android:layout_height="118dp"
+                android:src="@drawable/add_photo"
                 android:text="@string/add_image"
+                android:layout_gravity="center"
                 android:textColor="@color/black" />
 
         </androidx.cardview.widget.CardView>
 
         <EditText
-            android:id="@+id/editTextTextPersonName"
+            android:id="@+id/etAddUsername"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
@@ -104,7 +88,7 @@
             android:padding="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/addImage" />
+            app:layout_constraintTop_toBottomOf="@+id/ivAddImage" />
 
         <Button
             android:id="@+id/btnRegister"
@@ -120,7 +104,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/etPassword2" />
+            app:layout_constraintTop_toBottomOf="@+id/etAddPassword" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

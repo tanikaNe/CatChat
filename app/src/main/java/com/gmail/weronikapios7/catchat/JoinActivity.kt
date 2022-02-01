@@ -1,17 +1,13 @@
-package com.example.catchat
+package com.gmail.weronikapios7.catchat
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
+import catchat.R
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
-import com.google.android.material.tabs.TabLayoutMediator.TabConfigurationStrategy
-
-import androidx.annotation.NonNull
-
-
 
 
 private const val  NUM_PAGES = 2

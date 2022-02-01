@@ -1,7 +1,8 @@
-package com.example.catchat
+package com.gmail.weronikapios7.catchat
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import catchat.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

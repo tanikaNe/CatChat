@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "854789271546",
+    "project_id": "catchat-9a2cc",
+    "storage_bucket": "catchat-9a2cc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:854789271546:android:6078cf3509aa603bdf7e43",
+        "android_client_info": {
+          "package_name": "com.gmail.weronikapios7.catchat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "854789271546-cpl6lhubq45sol7l5c00hr3hhokr489f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD0500Y_IRqT0FOeEUj9WQbm1Hl4FaR7Rs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "854789271546-cpl6lhubq45sol7l5c00hr3hhokr489f.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
