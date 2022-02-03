@@ -7,11 +7,13 @@
         <entry key="..\:/Users/weron/AndroidStudioProjects/CatChat/app/src/main/res/drawable/etxt_bg.xml" value="0.1" />
         <entry key="..\:/Users/weron/AndroidStudioProjects/CatChat/app/src/main/res/drawable/profile_img_bg.xml" value="0.1" />
         <entry key="..\:/Users/weron/AndroidStudioProjects/CatChat/app/src/main/res/drawable/view_bg.xml" value="0.1" />
+        <entry key="..\:/Users/weron/AndroidStudioProjects/CatChat/app/src/main/res/layout-v28/loading_dialog.xml" value="0.10925925925925926" />
         <entry key="..\:/Users/weron/AndroidStudioProjects/CatChat/app/src/main/res/layout/activity_join.xml" value="0.2" />
         <entry key="..\:/Users/weron/AndroidStudioProjects/CatChat/app/src/main/res/layout/activity_login.xml" value="0.25" />
         <entry key="..\:/Users/weron/AndroidStudioProjects/CatChat/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Users/weron/AndroidStudioProjects/CatChat/app/src/main/res/layout/fragment_login.xml" value="0.176" />
         <entry key="..\:/Users/weron/AndroidStudioProjects/CatChat/app/src/main/res/layout/fragment_register.xml" value="0.18596491228070175" />
+        <entry key="..\:/Users/weron/AndroidStudioProjects/CatChat/app/src/main/res/layout/loading_dialog.xml" value="0.264" />
       </map>
     </option>
   </component>

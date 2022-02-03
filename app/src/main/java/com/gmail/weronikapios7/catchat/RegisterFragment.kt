@@ -1,5 +1,6 @@
 package com.gmail.weronikapios7.catchat
 
+import android.app.AlertDialog
 import android.content.Intent
 import android.graphics.ImageDecoder
 import android.graphics.drawable.BitmapDrawable
@@ -18,6 +19,7 @@ import android.widget.Toast
 import androidx.activity.result.ActivityResultCallback
 import androidx.activity.result.contract.ActivityResultContracts
 import catchat.R
+import com.gmail.weronikapios7.catchat.utils.LoadingDialog
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -26,9 +28,9 @@ import java.io.IOException
 import java.util.*
 
 //TODO move profile image uploading to separate class as image uploader
-// TODO move firebase stuff to separate class
+//TODO move firebase stuff to separate class
 
-class RegisterFragment : Fragment() {
+class RegisterFragment(val loadingDialog: LoadingDialog) : Fragment() {
 
     private var selectedPhotoUri: Uri? = null
 
@@ -63,7 +65,6 @@ class RegisterFragment : Fragment() {
         profileImage = requireView().findViewById(R.id.btnProfileImage)
         signBtn = requireView().findViewById(R.id.btnRegister)
 
-
         signBtn.setOnClickListener {
             val email = email.text.toString()
             val password = password.toString()
@@ -81,6 +82,8 @@ class RegisterFragment : Fragment() {
         val isFilled = checkIfFilled(username, email, password)
 
         if (isFilled) {
+            //show loading dialog while the data is being uploaded to firebase
+            showLoading()
             //TODO check if user does not exist
             mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener { task ->
@@ -166,6 +169,8 @@ class RegisterFragment : Fragment() {
     private fun uploadImageToStorage(username: String) {
         if (selectedPhotoUri == null) return
 
+
+
         //create random filename to save in firebase storage
         val filename = UUID.randomUUID().toString()
         val ref = FirebaseStorage.getInstance().getReference("/images/$filename")
@@ -190,6 +195,7 @@ class RegisterFragment : Fragment() {
     }
 
     private fun saveUserToDB(filepath: String, username: String) {
+
         val uid = FirebaseAuth.getInstance().uid ?: ""
         val db = Firebase.firestore
 
@@ -211,8 +217,24 @@ class RegisterFragment : Fragment() {
                 }
             }
             .addOnFailureListener { e ->
+
                 Log.w("RegisterFragment", "Error adding document $e")
             }
+            .addOnCompleteListener {
+                Log.d("RegisterActivity", "Creating account completed")
+                hideLoading()
+            }
     }
+
+    private fun showLoading(){
+        Log.d("RegisterFragment", "Loading data")
+        loadingDialog.startLoading();
+    }
+
+    private fun hideLoading(){
+        loadingDialog.isDismiss()
+    }
+
+
 }
 

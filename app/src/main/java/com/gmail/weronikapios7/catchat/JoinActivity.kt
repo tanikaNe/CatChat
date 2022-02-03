@@ -9,24 +9,27 @@ import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import catchat.R
+import com.gmail.weronikapios7.catchat.utils.LoadingDialog
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
+import java.util.logging.Handler
 
 
-private const val  NUM_PAGES = 2
+private const val NUM_PAGES = 2
+
 class JoinActivity : FragmentActivity() {
 
     private lateinit var viewPager: ViewPager2
+    private lateinit var loadingDialog: LoadingDialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
-
-
         super.onCreate(savedInstanceState)
-
         setContentView(R.layout.activity_join)
 
         val viewPager: ViewPager2 = findViewById(R.id.joinViewPager)
         val tabLayout: TabLayout = findViewById(R.id.tabLayout)
+
+        loadingDialog = LoadingDialog(this)
 
         val pagerAdapter = ScreenSlidePagerAdapter(this)
         viewPager.adapter = pagerAdapter
@@ -39,26 +42,25 @@ class JoinActivity : FragmentActivity() {
 
 
     override fun onBackPressed() {
-        if(viewPager.currentItem ==0) {
+        if (viewPager.currentItem == 0) {
             //if the user is looking at the first step, handle the back button
             super.onBackPressed()
-        }else {
+        } else {
             //otherwise select the previous step
-            viewPager.currentItem = viewPager.currentItem -1
+            viewPager.currentItem = viewPager.currentItem - 1
         }
     }
 
-    private inner class ScreenSlidePagerAdapter(fragment: JoinActivity) : FragmentStateAdapter(fragment) {
+    private inner class ScreenSlidePagerAdapter(fragment: JoinActivity) :
+        FragmentStateAdapter(fragment) {
         override fun getItemCount(): Int = NUM_PAGES
 
         override fun createFragment(position: Int): Fragment {
-            return when (position){
+            return when (position) {
                 0 -> LoginFragment()
-                1 -> RegisterFragment()
-                else -> RegisterFragment()
+                1 -> RegisterFragment(loadingDialog)
+                else -> RegisterFragment(loadingDialog)
             }
         }
     }
-
-
 }
