@@ -26,6 +26,7 @@ import java.io.IOException
 import java.util.*
 
 //TODO move profile image uploading to separate class as image uploader
+// TODO move firebase stuff to separate class
 
 class RegisterFragment : Fragment() {
 
@@ -56,7 +57,6 @@ class RegisterFragment : Fragment() {
 
         mAuth = FirebaseAuth.getInstance()
 
-
         name = requireView().findViewById(R.id.etAddUsername)
         email = requireView().findViewById(R.id.etAddEmail)
         password = requireView().findViewById(R.id.etAddPassword)
@@ -67,7 +67,7 @@ class RegisterFragment : Fragment() {
         signBtn.setOnClickListener {
             val email = email.text.toString()
             val password = password.toString()
-            val username = name.toString()
+            val username = name.text.toString()
 
             signUp(username, email, password)
         }
@@ -88,17 +88,12 @@ class RegisterFragment : Fragment() {
                         //Sign in success, update UI with the signed-in user's information
                         Log.d("RegisterFragment", "createUserWithEmail:success")
 
-                        uploadImageToStorage()
+                        uploadImageToStorage(username)
 
-                        //open main activity - with chats
-                        activity?.let {
-                            val intent = Intent(it, MainActivity::class.java)
-                            it.startActivity(intent)
-                        }
                     } else {
                         //If sign in fails, display a message to the user
                         Log.w("RegisterFragment", "createUserWithEmail:failure", task.exception)
-                        createToast("Authentication failed.")
+                        createToast("Authentication failed. The email address is already in use by another account")
                     }
                 }
         }
@@ -118,6 +113,7 @@ class RegisterFragment : Fragment() {
                         )
                     ImageDecoder.decodeBitmap(src)
                 } else {
+                    selectedPhotoUri = it
                     @Suppress("DEPRECATION")
                     MediaStore.Images.Media.getBitmap(
                         requireContext().contentResolver,
@@ -167,8 +163,9 @@ class RegisterFragment : Fragment() {
         Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
     }
 
-    private fun uploadImageToStorage(){
-        if(selectedPhotoUri == null) return
+    private fun uploadImageToStorage(username: String) {
+        if (selectedPhotoUri == null) return
+
         //create random filename to save in firebase storage
         val filename = UUID.randomUUID().toString()
         val ref = FirebaseStorage.getInstance().getReference("/images/$filename")
@@ -177,16 +174,45 @@ class RegisterFragment : Fragment() {
             .addOnSuccessListener {
                 Log.d("RegisterFragment", "Image uploaded successfully: ${it.metadata?.path}")
 
+                ref.downloadUrl.addOnSuccessListener {
+                    saveUserToDB(it.toString(), username)
+                }
+                    .addOnFailureListener { e ->
+                        Log.w("RegisterFragment", "Error while downloading the image $e")
+
+                    }
+            }
+            .addOnFailureListener { e ->
+                Log.d("RegisterFragment", "Cannot upload image $e")
             }
 
-        //filepath
-        ref.downloadUrl.addOnSuccessListener {
-            it.toString()
 
-          //  saveUserToDB()
-        }
     }
 
+    private fun saveUserToDB(filepath: String, username: String) {
+        val uid = FirebaseAuth.getInstance().uid ?: ""
+        val db = Firebase.firestore
 
+        val user = hashMapOf(
+            "uid" to uid,
+            "username" to username,
+            "image" to filepath
+        )
+
+        db.collection("users")
+            .add(user)
+            .addOnSuccessListener { documentReference ->
+                Log.d("RegisterFragment", "DocumentSnapshot added with ID: ${documentReference.id}")
+
+                //open main activity - with chats
+                activity?.let {
+                    val intent = Intent(it, MainActivity::class.java)
+                    it.startActivity(intent)
+                }
+            }
+            .addOnFailureListener { e ->
+                Log.w("RegisterFragment", "Error adding document $e")
+            }
+    }
 }
 

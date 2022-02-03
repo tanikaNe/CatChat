@@ -61,7 +61,7 @@ class LoginFragment : Fragment() {
                         it.startActivity(intent)
                     }
                 }else{
-                    //If sign in fails, display a message to the user
+                    //If sign in fails, show a toast
                     Log.w("LoginFragment", "signInWithEmail:failure", task.exception)
                     Toast.makeText(context, "Authentication failed. Try again", Toast.LENGTH_SHORT).show()
                 }
