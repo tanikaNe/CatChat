@@ -1,9 +1,7 @@
 package com.gmail.weronikapios7.catchat
 
-import android.app.AlertDialog
 import android.content.Intent
 import android.graphics.ImageDecoder
-import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -24,6 +22,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
+import de.hdodenhof.circleimageview.CircleImageView
 import java.io.IOException
 import java.util.*
 
@@ -38,8 +37,9 @@ class RegisterFragment(val loadingDialog: LoadingDialog) : Fragment() {
     private lateinit var name: EditText
     private lateinit var email: EditText
     private lateinit var password: EditText
-    private lateinit var profileImage: Button
+    private lateinit var profileImageBtn: Button
     private lateinit var signBtn: Button
+    private lateinit var profileImage: CircleImageView
 
     //firebase
     private lateinit var mAuth: FirebaseAuth
@@ -62,8 +62,9 @@ class RegisterFragment(val loadingDialog: LoadingDialog) : Fragment() {
         name = requireView().findViewById(R.id.etAddUsername)
         email = requireView().findViewById(R.id.etAddEmail)
         password = requireView().findViewById(R.id.etAddPassword)
-        profileImage = requireView().findViewById(R.id.btnProfileImage)
+        profileImageBtn = requireView().findViewById(R.id.btnProfileImage)
         signBtn = requireView().findViewById(R.id.btnRegister)
+        profileImage = requireView().findViewById(R.id.ivProfileImage)
 
         signBtn.setOnClickListener {
             val email = email.text.toString()
@@ -73,7 +74,7 @@ class RegisterFragment(val loadingDialog: LoadingDialog) : Fragment() {
             signUp(username, email, password)
         }
 
-        profileImage.setOnClickListener {
+        profileImageBtn.setOnClickListener {
             pickImageGallery()
         }
     }
@@ -124,9 +125,11 @@ class RegisterFragment(val loadingDialog: LoadingDialog) : Fragment() {
                     )
                 }
 
-                val bitmapBg = BitmapDrawable(requireContext().resources, bitmap)
-                profileImage.background = bitmapBg
-                profileImage.text = ""
+                profileImage.setImageBitmap(bitmap)
+                profileImageBtn.alpha = 0f
+//                val bitmapBg = BitmapDrawable(requireContext().resources, bitmap)
+//                profileImage.background = bitmapBg
+//                profileImage.text = ""
 
             } catch (e: IOException) {
                 e.printStackTrace()
