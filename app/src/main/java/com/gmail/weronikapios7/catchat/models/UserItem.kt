@@ -1,4 +1,4 @@
-package com.gmail.weronikapios7.catchat
+package com.gmail.weronikapios7.catchat.models
 
 import android.net.Uri
 

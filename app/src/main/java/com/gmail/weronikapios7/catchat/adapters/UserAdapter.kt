@@ -1,13 +1,13 @@
-package com.gmail.weronikapios7.catchat
+package com.gmail.weronikapios7.catchat.adapters
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import catchat.R
+import com.gmail.weronikapios7.catchat.models.UserItem
 import com.squareup.picasso.Picasso
 
 class UserAdapter(

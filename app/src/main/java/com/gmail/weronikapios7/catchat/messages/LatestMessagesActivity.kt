@@ -1,12 +1,12 @@
-package com.gmail.weronikapios7.catchat
+package com.gmail.weronikapios7.catchat.messages
 
-import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import catchat.R
+import com.gmail.weronikapios7.catchat.auth.JoinActivity
 import com.google.firebase.auth.FirebaseAuth
 import java.util.*
 

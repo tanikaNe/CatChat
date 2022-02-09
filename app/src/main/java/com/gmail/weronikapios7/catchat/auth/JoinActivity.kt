@@ -1,19 +1,16 @@
-package com.gmail.weronikapios7.catchat
+package com.gmail.weronikapios7.catchat.auth
 
-import android.app.ActionBar
-import android.app.Activity
-import android.content.Intent
 import android.os.Bundle
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import catchat.R
+import com.gmail.weronikapios7.catchat.auth.LoginFragment
+import com.gmail.weronikapios7.catchat.auth.RegisterFragment
 import com.gmail.weronikapios7.catchat.utils.LoadingDialog
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
-import java.util.logging.Handler
 
 //TODO add binding everywhere
 

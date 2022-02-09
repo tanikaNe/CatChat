@@ -14,17 +14,13 @@ package="catchat">
     android:theme="@style/Theme.CatChat">
 
     <activity
-        android:name="com.gmail.weronikapios7.catchat.JoinActivity"
+        android:name="com.gmail.weronikapios7.catchat.auth.JoinActivity"
         android:exported="true">
     </activity>
 
-    <activity
-        android:name="com.gmail.weronikapios7.catchat.MainActivity"
-        android:exported="true">
-    </activity>
 
     <activity
-        android:name="com.gmail.weronikapios7.catchat.LatestMessagesActivity"
+        android:name="com.gmail.weronikapios7.catchat.messages.LatestMessagesActivity"
         android:exported="true">
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />
@@ -34,9 +30,9 @@ package="catchat">
     </activity>
 
     <activity
-        android:name="com.gmail.weronikapios7.catchat.NewMessageActivity"
+        android:name="com.gmail.weronikapios7.catchat.messages.NewMessageActivity"
         android:exported="false"
-        android:parentActivityName="com.gmail.weronikapios7.catchat.LatestMessagesActivity">
+        android:parentActivityName="com.gmail.weronikapios7.catchat.messages.LatestMessagesActivity">
         </activity>
 
 </application>

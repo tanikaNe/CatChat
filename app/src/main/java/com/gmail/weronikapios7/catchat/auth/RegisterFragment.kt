@@ -1,4 +1,4 @@
-package com.gmail.weronikapios7.catchat
+package com.gmail.weronikapios7.catchat.auth
 
 import android.content.Intent
 import android.graphics.ImageDecoder
@@ -17,6 +17,7 @@ import android.widget.Toast
 import androidx.activity.result.ActivityResultCallback
 import androidx.activity.result.contract.ActivityResultContracts
 import catchat.R
+import com.gmail.weronikapios7.catchat.messages.LatestMessagesActivity
 import com.gmail.weronikapios7.catchat.utils.LoadingDialog
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore

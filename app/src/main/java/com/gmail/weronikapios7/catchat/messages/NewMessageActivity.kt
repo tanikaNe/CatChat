@@ -1,18 +1,15 @@
-package com.gmail.weronikapios7.catchat
+package com.gmail.weronikapios7.catchat.messages
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.LinearLayout
 import androidx.recyclerview.widget.RecyclerView
 import catchat.R
-import catchat.databinding.ActivityJoinBinding.inflate
+import com.gmail.weronikapios7.catchat.adapters.UserAdapter
+import com.gmail.weronikapios7.catchat.models.UserItem
 import com.gmail.weronikapios7.catchat.utils.LoadingDialog
-import com.google.firebase.firestore.auth.User
 import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
-import com.squareup.picasso.Picasso
 
 class NewMessageActivity : AppCompatActivity() {
 
