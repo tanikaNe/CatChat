@@ -229,7 +229,6 @@ class RegisterFragment(private val loadingDialog: LoadingDialog) : Fragment() {
     }
 
     private fun showLoading(){
-        Log.d("RegisterFragment", "Loading data")
         loadingDialog.startLoading();
     }
 

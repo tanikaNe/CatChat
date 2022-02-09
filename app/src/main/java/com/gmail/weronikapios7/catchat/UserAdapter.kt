@@ -1,20 +1,16 @@
 package com.gmail.weronikapios7.catchat
 
-import android.graphics.ImageDecoder
-import android.net.Uri
-import android.os.Build
-import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import catchat.R
-import java.io.IOException
 
 class UserAdapter(
-    var users: List<User>
+    var users: List<UserItem>
 ) : RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
 
     inner class UserViewHolder(itemView: View): RecyclerView.ViewHolder(itemView)
@@ -28,9 +24,9 @@ class UserAdapter(
     override fun onBindViewHolder(holder: UserViewHolder, position: Int) {
         holder.itemView.apply {
             val image: ImageView = findViewById(R.id.ivItemImage)
-            val username: TextView = findViewById(R.id.tvItemUsername)
-
+            val username: TextView = findViewById(R.id.btnItemUser)
             username.text = users[position].username
+
 
         }
     }
@@ -39,6 +35,8 @@ class UserAdapter(
     override fun getItemCount(): Int {
         return users.size
     }
+
+
 
 
 }
