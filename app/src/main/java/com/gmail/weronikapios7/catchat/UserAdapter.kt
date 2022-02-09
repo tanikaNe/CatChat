@@ -8,9 +8,10 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import catchat.R
+import com.squareup.picasso.Picasso
 
 class UserAdapter(
-    var users: List<UserItem>
+    private var users: List<UserItem>
 ) : RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
 
     inner class UserViewHolder(itemView: View): RecyclerView.ViewHolder(itemView)
@@ -27,6 +28,7 @@ class UserAdapter(
             val username: TextView = findViewById(R.id.btnItemUser)
             username.text = users[position].username
 
+            Picasso.get().load(users[position].profileImage).into(image)
 
         }
     }

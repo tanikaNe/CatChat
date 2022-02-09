@@ -12,6 +12,7 @@ import com.google.firebase.firestore.auth.User
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
+import com.squareup.picasso.Picasso
 
 class NewMessageActivity : AppCompatActivity() {
 
@@ -53,7 +54,7 @@ class NewMessageActivity : AppCompatActivity() {
 
     }
 
-    fun createList(user: UserItem){
+    private fun createList(user: UserItem){
         usersList.add(user)
     }
 
