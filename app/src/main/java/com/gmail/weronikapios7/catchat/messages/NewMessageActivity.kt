@@ -1,5 +1,6 @@
 package com.gmail.weronikapios7.catchat.messages
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -8,6 +9,7 @@ import catchat.R
 import com.gmail.weronikapios7.catchat.adapters.UserAdapter
 import com.gmail.weronikapios7.catchat.models.UserItem
 import com.gmail.weronikapios7.catchat.utils.LoadingDialog
+import com.google.firebase.firestore.auth.User
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
@@ -22,7 +24,7 @@ class NewMessageActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_new_message)
         loadingDialog = LoadingDialog(this)
-
+        supportActionBar?.title = "Select User"
         usersList = mutableListOf()
         fetchUsers()
     }
@@ -56,11 +58,10 @@ class NewMessageActivity : AppCompatActivity() {
     }
 
     private fun createAdapter(){
-        val rvNewMessages: RecyclerView = findViewById(R.id.rvNewMessage)
-        supportActionBar?.title = "Select User"
+        val rvNewMessage: RecyclerView = findViewById(R.id.rvNewMessage)
         rvAdapter = UserAdapter(usersList)
-        rvNewMessages.adapter = rvAdapter
-    }
+        rvNewMessage.adapter = rvAdapter
 
+    }
 
 }

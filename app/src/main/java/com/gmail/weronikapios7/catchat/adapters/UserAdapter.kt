@@ -1,22 +1,27 @@
 package com.gmail.weronikapios7.catchat.adapters
 
+import android.content.Context
+import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import catchat.R
+import com.gmail.weronikapios7.catchat.messages.ChatLogActivity
 import com.gmail.weronikapios7.catchat.models.UserItem
 import com.squareup.picasso.Picasso
+import de.hdodenhof.circleimageview.CircleImageView
 
 class UserAdapter(
-    private var users: List<UserItem>
+    private val users: List<UserItem>,
 ) : RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
 
-    inner class UserViewHolder(itemView: View): RecyclerView.ViewHolder(itemView)
+    private lateinit var context: Context
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {
+        context = parent.context
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_user, parent, false )
         return UserViewHolder(view)
     }
@@ -24,14 +29,22 @@ class UserAdapter(
 
     override fun onBindViewHolder(holder: UserViewHolder, position: Int) {
         holder.itemView.apply {
-            val image: ImageView = findViewById(R.id.ivItemImage)
-            val username: TextView = findViewById(R.id.btnItemUser)
+            val image: CircleImageView = findViewById(R.id.ivItemImage)
+            val username: TextView = findViewById(R.id.tvItemUsername)
             username.text = users[position].username
 
             Picasso.get().load(users[position].profileImage).into(image)
+            this.setOnClickListener{
+                Log.d("UserAdapter", "on click listener")
+                val intent = Intent(context, ChatLogActivity::class.java)
+                context.startActivity(intent)
+
+            }
 
         }
+
     }
+
 
     //count the number of items in the list
     override fun getItemCount(): Int {
@@ -39,6 +52,7 @@ class UserAdapter(
     }
 
 
+    inner class UserViewHolder(itemView: View): RecyclerView.ViewHolder(itemView)
 
 
 }

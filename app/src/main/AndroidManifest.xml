@@ -16,6 +16,7 @@ package="catchat">
     <activity
         android:name="com.gmail.weronikapios7.catchat.auth.JoinActivity"
         android:exported="true">
+
     </activity>
 
 
@@ -33,7 +34,14 @@ package="catchat">
         android:name="com.gmail.weronikapios7.catchat.messages.NewMessageActivity"
         android:exported="false"
         android:parentActivityName="com.gmail.weronikapios7.catchat.messages.LatestMessagesActivity">
-        </activity>
+
+    </activity>
+
+    <activity
+        android:name="com.gmail.weronikapios7.catchat.messages.ChatLogActivity"
+        android:exported="false"
+        android:parentActivityName="com.gmail.weronikapios7.catchat.messages.LatestMessagesActivity">
+    </activity>
 
 </application>
 
