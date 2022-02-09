@@ -34,11 +34,12 @@ class UserAdapter(
             username.text = users[position].username
 
             Picasso.get().load(users[position].profileImage).into(image)
+
             this.setOnClickListener{
                 Log.d("UserAdapter", "on click listener")
                 val intent = Intent(context, ChatLogActivity::class.java)
+                intent.putExtra("USER", users[position])
                 context.startActivity(intent)
-
             }
 
         }

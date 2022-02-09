@@ -7,4 +7,34 @@
     android:layout_height="match_parent"
     tools:context="com.gmail.weronikapios7.catchat.messages.ChatLogActivity">
 
-  </androidx.constraintlayout.widget.ConstraintLayout>
+  <EditText
+      android:id="@+id/etEnterMsg"
+      android:layout_width="0dp"
+      android:layout_height="50dp"
+      android:ems="10"
+      android:inputType="textPersonName"
+      android:text=""
+      android:hint="@string/enter_message"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toStartOf="@+id/btnSend"
+      app:layout_constraintStart_toStartOf="parent" />
+
+  <ImageButton
+      android:id="@+id/btnSend"
+      android:layout_width="wrap_content"
+      android:layout_height="50dp"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:srcCompat="@android:drawable/ic_menu_send" />
+
+  <androidx.recyclerview.widget.RecyclerView
+      android:id="@+id/rvChatLog"
+      app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+      android:layout_width="0dp"
+      android:layout_height="0dp"
+      app:layout_constraintBottom_toTopOf="@+id/etEnterMsg"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      android:layout_marginBottom="16dp"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
