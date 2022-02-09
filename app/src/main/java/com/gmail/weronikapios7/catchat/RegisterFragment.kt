@@ -29,7 +29,7 @@ import java.util.*
 //TODO move profile image uploading to separate class as image uploader
 //TODO move firebase stuff to separate class
 
-class RegisterFragment(val loadingDialog: LoadingDialog) : Fragment() {
+class RegisterFragment(private val loadingDialog: LoadingDialog) : Fragment() {
 
     private var selectedPhotoUri: Uri? = null
 
@@ -64,11 +64,11 @@ class RegisterFragment(val loadingDialog: LoadingDialog) : Fragment() {
         password = requireView().findViewById(R.id.etAddPassword)
         profileImageBtn = requireView().findViewById(R.id.btnProfileImage)
         signBtn = requireView().findViewById(R.id.btnRegister)
-        profileImage = requireView().findViewById(R.id.ivProfileImage)
+        profileImage = requireView().findViewById(R.id.ivItemImage)
 
         signBtn.setOnClickListener {
             val email = email.text.toString()
-            val password = password.toString()
+            val password = password.text.toString()
             val username = name.text.toString()
 
             signUp(username, email, password)
@@ -97,7 +97,8 @@ class RegisterFragment(val loadingDialog: LoadingDialog) : Fragment() {
                     } else {
                         //If sign in fails, display a message to the user
                         Log.w("RegisterFragment", "createUserWithEmail:failure", task.exception)
-                        createToast("Authentication failed. The email address is already in use by another account")
+                        hideLoading()
+                        createToast("Authentication failed. Try again later")
                     }
                 }
         }
@@ -127,9 +128,6 @@ class RegisterFragment(val loadingDialog: LoadingDialog) : Fragment() {
 
                 profileImage.setImageBitmap(bitmap)
                 profileImageBtn.alpha = 0f
-//                val bitmapBg = BitmapDrawable(requireContext().resources, bitmap)
-//                profileImage.background = bitmapBg
-//                profileImage.text = ""
 
             } catch (e: IOException) {
                 e.printStackTrace()
@@ -213,9 +211,10 @@ class RegisterFragment(val loadingDialog: LoadingDialog) : Fragment() {
             .addOnSuccessListener { documentReference ->
                 Log.d("RegisterFragment", "DocumentSnapshot added with ID: ${documentReference.id}")
 
-                //open main activity - with chats
+                //open latest messages activity
                 activity?.let {
-                    val intent = Intent(it, MainActivity::class.java)
+                    val intent = Intent(it, LatestMessagesActivity::class.java)
+                    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
                     it.startActivity(intent)
                 }
             }
@@ -235,7 +234,7 @@ class RegisterFragment(val loadingDialog: LoadingDialog) : Fragment() {
     }
 
     private fun hideLoading(){
-        loadingDialog.isDismiss()
+        loadingDialog.stopLoading()
     }
 
 

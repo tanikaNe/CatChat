@@ -1,5 +1,6 @@
 package com.gmail.weronikapios7.catchat
 
+import android.app.ActionBar
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
@@ -14,6 +15,7 @@ import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import java.util.logging.Handler
 
+//TODO add binding everywhere
 
 private const val NUM_PAGES = 2
 

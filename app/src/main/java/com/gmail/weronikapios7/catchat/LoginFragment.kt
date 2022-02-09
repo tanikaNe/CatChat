@@ -50,25 +50,36 @@ class LoginFragment : Fragment() {
 
     private fun login(email: String, password: String){
         // login for existing user
-        mAuth.signInWithEmailAndPassword(email, password)
-            .addOnCompleteListener(){ task ->
-                if (task.isSuccessful){
-                    //Sign in success, update UI with the signed-in user's information
-                    Log.d("LoginFragment", "signInWithEmail:success")
+        Log.d("LoginFragment", "Email: $email, Password: $password")
+        if( email.isEmpty() || password.isEmpty()){
+            Toast.makeText(context, "Enter email and password", Toast.LENGTH_SHORT).show()
+        }else {
+            mAuth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener() { task ->
+                    if (task.isSuccessful) {
+                        //Sign in success, update UI with the signed-in user's information
+                        Log.d("LoginFragment", "signInWithEmail:success")
 
-                    activity?.let{
-                        val intent = Intent(it, MainActivity::class.java)
-                        it.startActivity(intent)
+                        activity?.let {
+                            val intent = Intent(it, LatestMessagesActivity::class.java)
+                            it.startActivity(intent)
+                        }
+                    } else {
+                        //If sign in fails, show a toast
+                        Log.d("LoginFragment", "signInWithEmail:failure", task.exception)
+                        Toast.makeText(
+                            context,
+                            "Authentication failed. Try again",
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
-                }else{
-                    //If sign in fails, show a toast
-                    Log.w("LoginFragment", "signInWithEmail:failure", task.exception)
-                    Toast.makeText(context, "Authentication failed. Try again", Toast.LENGTH_SHORT).show()
-                }
 
-            }
+                }
+        }
 
     }
+
+
 
 
 

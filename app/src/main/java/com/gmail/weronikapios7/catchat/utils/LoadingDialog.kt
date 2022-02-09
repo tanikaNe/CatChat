@@ -21,7 +21,7 @@ class LoadingDialog(private val mActivity: Activity) {
         isDialog.show()
     }
 
-    fun isDismiss(){
+    fun stopLoading(){
         isDialog.dismiss()
     }
 }
