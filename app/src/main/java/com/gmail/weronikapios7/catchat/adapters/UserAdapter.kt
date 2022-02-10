@@ -10,12 +10,12 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import catchat.R
 import com.gmail.weronikapios7.catchat.messages.ChatLogActivity
-import com.gmail.weronikapios7.catchat.models.UserItem
+import com.gmail.weronikapios7.catchat.models.User
 import com.squareup.picasso.Picasso
 import de.hdodenhof.circleimageview.CircleImageView
 
 class UserAdapter(
-    private val users: List<UserItem>,
+    private val users: List<User>
 ) : RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
 
     private lateinit var context: Context
@@ -35,6 +35,7 @@ class UserAdapter(
 
             Picasso.get().load(users[position].profileImage).into(image)
 
+            //on click open ChatLogActivity and send the selected user's data to set the navBar title
             this.setOnClickListener{
                 Log.d("UserAdapter", "on click listener")
                 val intent = Intent(context, ChatLogActivity::class.java)

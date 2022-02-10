@@ -5,12 +5,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/chat_background"
     tools:context="com.gmail.weronikapios7.catchat.messages.ChatLogActivity">
 
   <EditText
       android:id="@+id/etEnterMsg"
       android:layout_width="0dp"
       android:layout_height="50dp"
+      android:background="@drawable/dialog_bg"
+      android:padding="8dp"
       android:ems="10"
       android:inputType="textPersonName"
       android:text=""
