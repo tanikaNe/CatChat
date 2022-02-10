@@ -8,10 +8,7 @@ import catchat.R
 import com.gmail.weronikapios7.catchat.adapters.UserAdapter
 import com.gmail.weronikapios7.catchat.models.User
 import com.gmail.weronikapios7.catchat.utils.LoadingDialog
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
-import com.gmail.weronikapios7.catchat.utils.Firebase as FirebaseUtil
+import com.gmail.weronikapios7.catchat.utils.FirebaseUtil as FirebaseUtil
 
 class NewMessageActivity : AppCompatActivity() {
 
@@ -36,10 +33,11 @@ class NewMessageActivity : AppCompatActivity() {
     private fun fetchUsers(){
         loadingDialog.startLoading()
 
-        firebase.fetchUsers()
+        firebase.usersCollection()
+            .get()
             .addOnSuccessListener { docs ->
                 for (doc in docs) {
-                    if (firebase.getInstance().currentUser?.uid != doc.data["uid"]) {
+                    if (firebase.getAuthInstance().currentUser?.uid != doc.data["uid"]) {
 
                         val user = createUser(
                             doc.data["uid"].toString(),
@@ -57,7 +55,6 @@ class NewMessageActivity : AppCompatActivity() {
             .addOnFailureListener{ e ->
                 Log.d("NewMessageActivity", "Error getting documents: ", e)
             }
-
     }
 
     private fun createList(user: User){

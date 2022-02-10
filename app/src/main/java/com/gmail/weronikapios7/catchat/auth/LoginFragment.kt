@@ -1,5 +1,6 @@
 package com.gmail.weronikapios7.catchat.auth
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -12,8 +13,7 @@ import android.widget.EditText
 import android.widget.Toast
 import catchat.R
 import com.gmail.weronikapios7.catchat.messages.LatestMessagesActivity
-import com.google.firebase.auth.FirebaseAuth
-
+import com.gmail.weronikapios7.catchat.utils.FirebaseUtil
 
 
 class LoginFragment : Fragment() {
@@ -21,7 +21,7 @@ class LoginFragment : Fragment() {
     private lateinit var editEmail: EditText
     private lateinit var editPassword: EditText
     private lateinit var loginBtn: Button
-    private lateinit var mAuth: FirebaseAuth
+    private lateinit var firebase: FirebaseUtil
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -35,7 +35,7 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        mAuth = FirebaseAuth.getInstance()
+        firebase = FirebaseUtil()
 
         editEmail = requireView().findViewById(R.id.etAddEmail)
         editPassword = requireView().findViewById(R.id.etAddPassword)
@@ -44,44 +44,44 @@ class LoginFragment : Fragment() {
         loginBtn.setOnClickListener {
             val email = editEmail.text.toString()
             val password = editPassword.text.toString()
-            login(email,password)
+            login(email, password)
         }
     }
 
 
-    private fun login(email: String, password: String){
+    private fun login(email: String, password: String) {
         // login for existing user
         Log.d("LoginFragment", "Email: $email, Password: $password")
-        if( email.isEmpty() || password.isEmpty()){
-            Toast.makeText(context, "Enter email and password", Toast.LENGTH_SHORT).show()
-        }else {
-            mAuth.signInWithEmailAndPassword(email, password)
+
+        if (email.isEmpty() || password.isEmpty()) {
+            createToast("Enter email and password")
+        } else {
+            firebase.getAuthInstance().signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener() { task ->
                     if (task.isSuccessful) {
                         //Sign in success, update UI with the signed-in user's information
                         Log.d("LoginFragment", "signInWithEmail:success")
 
                         activity?.let {
-                            val intent = Intent(it, LatestMessagesActivity::class.java)
-                            it.startActivity(intent)
+                            launchActivity(it)
                         }
                     } else {
                         //If sign in fails, show a toast
                         Log.d("LoginFragment", "signInWithEmail:failure", task.exception)
-                        Toast.makeText(
-                            context,
-                            "Authentication failed. Try again",
-                            Toast.LENGTH_SHORT
-                        ).show()
+                        createToast("Authentication failed. Try again")
                     }
-
                 }
         }
-
     }
 
+    private fun launchActivity(context: Context) {
+        val intent = Intent(context, LatestMessagesActivity::class.java)
+        context.startActivity(intent)
+    }
 
-
+    private fun createToast(message: String) {
+        Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
+    }
 
 
 }

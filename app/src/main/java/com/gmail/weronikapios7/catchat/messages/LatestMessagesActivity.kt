@@ -7,6 +7,7 @@ import android.view.Menu
 import android.view.MenuItem
 import catchat.R
 import com.gmail.weronikapios7.catchat.auth.JoinActivity
+import com.gmail.weronikapios7.catchat.utils.FirebaseUtil
 import com.google.firebase.auth.FirebaseAuth
 import java.util.*
 
@@ -19,14 +20,14 @@ class LatestMessagesActivity : AppCompatActivity() {
     }
 
     private fun verifyUserIsLoggedIn(){
-        val uid = FirebaseAuth.getInstance().uid
-        if(uid == null){
+
+        if(FirebaseUtil().getAuthInstance().uid == null){
             launchJoinActivity()
         }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when(item?.itemId){
+        when(item.itemId){
             R.id.menu_new_message -> {
                 val intent = Intent(this, NewMessageActivity::class.java)
                 startActivity(intent)

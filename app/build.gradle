@@ -49,7 +49,7 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
 
-    //Firebase
+    //FirebaseUtil
     implementation 'com.google.firebase:firebase-auth:21.0.1'
     implementation platform('com.google.firebase:firebase-bom:29.0.4')
     implementation 'com.google.firebase:firebase-analytics-ktx'
