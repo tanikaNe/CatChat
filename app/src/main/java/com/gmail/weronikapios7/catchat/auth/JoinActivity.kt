@@ -14,6 +14,7 @@ import com.google.android.material.tabs.TabLayoutMediator
 
 //TODO add binding everywhere
 //TODO check if username is not already in use
+//TODO create friends list feature
 
 private const val NUM_PAGES = 2
 

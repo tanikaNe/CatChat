@@ -32,10 +32,12 @@ class FirebaseUtil {
         )
     }
 
-    fun createMessage(message: String, uid: String): HashMap<String, String> {
+    fun createMessage(message: String, uid: String, receiverId: String, timestamp: String): HashMap<String, String> {
         return hashMapOf(
             "message" to message,
-            "uid" to uid
+            "uid" to uid,
+            "receiverId" to receiverId,
+            "timestamp" to timestamp
         )
     }
 
