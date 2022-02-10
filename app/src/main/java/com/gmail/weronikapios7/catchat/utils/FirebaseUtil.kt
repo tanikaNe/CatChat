@@ -20,12 +20,8 @@ class FirebaseUtil {
         return FirebaseStorage.getInstance().getReference(path)
     }
 
-    fun usersCollection(): CollectionReference {
-        return getFirestore().collection("users")
-    }
-
-    fun getFirestore(): FirebaseFirestore {
-        return Firebase.firestore
+    fun getCollection(collectionPath: String): CollectionReference {
+        return getFirestore().collection(collectionPath)
     }
 
     fun createUser(uid: String, username: String, filepath: String): HashMap<String, String> {
@@ -35,6 +31,18 @@ class FirebaseUtil {
             "image" to filepath
         )
     }
+
+    fun createMessage(message: String, uid: String): HashMap<String, String> {
+        return hashMapOf(
+            "message" to message,
+            "uid" to uid
+        )
+    }
+
+    private fun getFirestore(): FirebaseFirestore {
+        return Firebase.firestore
+    }
+
 
 
 

@@ -46,14 +46,14 @@ class ChatAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         context = parent.context
 
-        if( viewType == 1){
+        return if( viewType == 1){
             //inflate receive
             val view: View = LayoutInflater.from(context).inflate(R.layout.received_msg_row, parent, false)
-            return ReceiveViewHolder(view)
+            ReceiveViewHolder(view)
         }else{
             //inflate sent
             val view: View = LayoutInflater.from(context).inflate(R.layout.sent_message_row, parent, false)
-            return SentViewHolder(view)
+            SentViewHolder(view)
         }
     }
 
@@ -64,13 +64,13 @@ class ChatAdapter(
             //behaviour for sent view holder
             val viewHolder = holder as SentViewHolder
             holder.sentMessage.text = currentMessage.message
-            Picasso.get().load(messages[position].senderImage).into(holder.image)
+          //  Picasso.get().load(messages[position].senderImage).into(holder.image)
 
         } else {
             //behaviour for receive view holder
             val viewHolder = holder as ReceiveViewHolder
             holder.receivedMessage.text = currentMessage.message
-            Picasso.get().load(messages[position].senderImage).into(holder.image)
+           // Picasso.get().load(messages[position].senderImage).into(holder.image)
         }
     }
 

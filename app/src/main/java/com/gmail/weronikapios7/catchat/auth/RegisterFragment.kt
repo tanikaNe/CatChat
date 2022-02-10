@@ -159,7 +159,7 @@ class RegisterFragment(private val loadingDialog: LoadingDialog) : Fragment() {
         val uid = firebase.getAuthInstance().uid ?: ""
         val user = firebase.createUser(uid, username, filepath)
 
-        firebase.usersCollection()
+        firebase.getCollection("users")
             .add(user)
             .addOnSuccessListener { documentReference ->
                 Log.d("RegisterFragment", "DocumentSnapshot added with ID: ${documentReference.id}")

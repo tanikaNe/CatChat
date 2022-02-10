@@ -33,7 +33,7 @@ class NewMessageActivity : AppCompatActivity() {
     private fun fetchUsers(){
         loadingDialog.startLoading()
 
-        firebase.usersCollection()
+        firebase.getCollection("users")
             .get()
             .addOnSuccessListener { docs ->
                 for (doc in docs) {
